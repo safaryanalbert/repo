@@ -1,0 +1,44 @@
+﻿@using Shop.Models
+@model List<ProductWithAllDetails>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetConcreateProduct</title>
+    @*<link href="~/Content/Css/StyleSheet1.css" rel="stylesheet" />*@
+</head>
+<body>
+    <div>
+        <div class="container-fluid">
+            @Html.ActionLink("Create", "CreateNew", new { id = Model.First().ProductTypeId })
+            @Html.ActionLink("Home Page", "HomePage")
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                <div class="col-4">
+                    <div class="products-items-wrapper" style="text-align:center;">
+                        <img src="@item.Path" style="width: 100%; border-top-right-radius: 12px; border-top-left-radius: 12px;" />
+                        <div>@item.Name</div>
+                        <div>@item.About</div>
+                        @if (item.Prices != null && item.Types != null)
+                        {
+                            for (int i = 0; i < item.Types.Count; i++)
+                            {
+                                <div>@item.Prices[i] AMD---@item.Types[i]</div>
+                            }
+                        }
+                        @Html.ActionLink($"Edit {@item.Name}", "EditConProduct", new { id = item.Id })
+                        @Html.ActionLink($"Delete {@item.Name}", "RequestForDeletingConcreteProduct", item)
+                    </div>
+                </div>
+                        }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

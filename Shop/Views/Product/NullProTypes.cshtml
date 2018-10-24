@@ -1,0 +1,18 @@
+﻿
+@model Shop.Models.Produts
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NullProTypes</title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink($"Add a new {Model.ProductName}", "AddType", new { id = Model.Product_Id })
+    </div>
+</body>
+</html>

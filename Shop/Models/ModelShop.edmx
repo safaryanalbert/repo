@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConcreteProduct">
+          <Key>
+            <PropertyRef Name="ConcreteProduct_Id" />
+          </Key>
+          <Property Name="ConcreteProduct_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConcreteProductName" Type="varchar(max)" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="About" Type="varchar(max)" />
+          <Property Name="ProductType_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConcreteProductDetails">
+          <Key>
+            <PropertyRef Name="ConcreteProductDetails_Id" />
+          </Key>
+          <Property Name="ConcreteProductDetails_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConcreteProductTypeName" Type="varchar(max)" Nullable="false" />
+          <Property Name="Price" Type="int" />
+          <Property Name="ConcreteProduct_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductType_Id" />
+          </Key>
+          <Property Name="ProductType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeName" Type="varchar(max)" Nullable="false" />
+          <Property Name="Product_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produts">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ConcreteP__Concr__5165187F">
+          <End Role="ConcreteProduct" Type="Self.ConcreteProduct" Multiplicity="1" />
+          <End Role="ConcreteProductDetails" Type="Self.ConcreteProductDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConcreteProduct">
+              <PropertyRef Name="ConcreteProduct_Id" />
+            </Principal>
+            <Dependent Role="ConcreteProductDetails">
+              <PropertyRef Name="ConcreteProduct_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ConcreteP__Produ__4E88ABD4">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ConcreteProduct" Type="Self.ConcreteProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductType_Id" />
+            </Principal>
+            <Dependent Role="ConcreteProduct">
+              <PropertyRef Name="ProductType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductTy__Produ__4BAC3F29">
+          <End Role="Produts" Type="Self.Produts" Multiplicity="1" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produts">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="ProductType">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ShopModelContainer">
+          <EntitySet Name="ConcreteProduct" EntityType="Self.ConcreteProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConcreteProductDetails" EntityType="Self.ConcreteProductDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produts" EntityType="Self.Produts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ConcreteP__Concr__5165187F" Association="Self.FK__ConcreteP__Concr__5165187F">
+            <End Role="ConcreteProduct" EntitySet="ConcreteProduct" />
+            <End Role="ConcreteProductDetails" EntitySet="ConcreteProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ConcreteP__Produ__4E88ABD4" Association="Self.FK__ConcreteP__Produ__4E88ABD4">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ConcreteProduct" EntitySet="ConcreteProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductTy__Produ__4BAC3F29" Association="Self.FK__ProductTy__Produ__4BAC3F29">
+            <End Role="Produts" EntitySet="Produts" />
+            <End Role="ProductType" EntitySet="ProductType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ConcreteProduct">
+          <Key>
+            <PropertyRef Name="ConcreteProduct_Id" />
+          </Key>
+          <Property Name="ConcreteProduct_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConcreteProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConcreteProductDetails" Relationship="Self.FK__ConcreteP__Concr__5165187F" FromRole="ConcreteProduct" ToRole="ConcreteProductDetails" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK__ConcreteP__Produ__4E88ABD4" FromRole="ConcreteProduct" ToRole="ProductType" />
+        </EntityType>
+        <EntityType Name="ConcreteProductDetails">
+          <Key>
+            <PropertyRef Name="ConcreteProductDetails_Id" />
+          </Key>
+          <Property Name="ConcreteProductDetails_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConcreteProductTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="ConcreteProduct_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConcreteProduct" Relationship="Self.FK__ConcreteP__Concr__5165187F" FromRole="ConcreteProductDetails" ToRole="ConcreteProduct" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductType_Id" />
+          </Key>
+          <Property Name="ProductType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConcreteProduct" Relationship="Self.FK__ConcreteP__Produ__4E88ABD4" FromRole="ProductType" ToRole="ConcreteProduct" />
+          <NavigationProperty Name="Produts" Relationship="Self.FK__ProductTy__Produ__4BAC3F29" FromRole="ProductType" ToRole="Produts" />
+        </EntityType>
+        <EntityType Name="Produts">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK__ProductTy__Produ__4BAC3F29" FromRole="Produts" ToRole="ProductType" />
+        </EntityType>
+        <Association Name="FK__ConcreteP__Concr__5165187F">
+          <End Role="ConcreteProduct" Type="Self.ConcreteProduct" Multiplicity="1" />
+          <End Role="ConcreteProductDetails" Type="Self.ConcreteProductDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConcreteProduct">
+              <PropertyRef Name="ConcreteProduct_Id" />
+            </Principal>
+            <Dependent Role="ConcreteProductDetails">
+              <PropertyRef Name="ConcreteProduct_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ConcreteP__Produ__4E88ABD4">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ConcreteProduct" Type="Self.ConcreteProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductType_Id" />
+            </Principal>
+            <Dependent Role="ConcreteProduct">
+              <PropertyRef Name="ProductType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductTy__Produ__4BAC3F29">
+          <End Role="Produts" Type="Self.Produts" Multiplicity="1" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produts">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="ProductType">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ConcreteProduct" EntityType="Self.ConcreteProduct" />
+          <EntitySet Name="ConcreteProductDetails" EntityType="Self.ConcreteProductDetails" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+          <EntitySet Name="Produts" EntityType="Self.Produts" />
+          <AssociationSet Name="FK__ConcreteP__Concr__5165187F" Association="Self.FK__ConcreteP__Concr__5165187F">
+            <End Role="ConcreteProduct" EntitySet="ConcreteProduct" />
+            <End Role="ConcreteProductDetails" EntitySet="ConcreteProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ConcreteP__Produ__4E88ABD4" Association="Self.FK__ConcreteP__Produ__4E88ABD4">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ConcreteProduct" EntitySet="ConcreteProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductTy__Produ__4BAC3F29" Association="Self.FK__ProductTy__Produ__4BAC3F29">
+            <End Role="Produts" EntitySet="Produts" />
+            <End Role="ProductType" EntitySet="ProductType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShopModelContainer" CdmEntityContainer="ShopEntities">
+          <EntitySetMapping Name="ConcreteProduct">
+            <EntityTypeMapping TypeName="ShopModel.ConcreteProduct">
+              <MappingFragment StoreEntitySet="ConcreteProduct">
+                <ScalarProperty Name="ConcreteProduct_Id" ColumnName="ConcreteProduct_Id" />
+                <ScalarProperty Name="ConcreteProductName" ColumnName="ConcreteProductName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="ProductType_Id" ColumnName="ProductType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConcreteProductDetails">
+            <EntityTypeMapping TypeName="ShopModel.ConcreteProductDetails">
+              <MappingFragment StoreEntitySet="ConcreteProductDetails">
+                <ScalarProperty Name="ConcreteProductDetails_Id" ColumnName="ConcreteProductDetails_Id" />
+                <ScalarProperty Name="ConcreteProductTypeName" ColumnName="ConcreteProductTypeName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ConcreteProduct_Id" ColumnName="ConcreteProduct_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="ShopModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ProductType_Id" ColumnName="ProductType_Id" />
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produts">
+            <EntityTypeMapping TypeName="ShopModel.Produts">
+              <MappingFragment StoreEntitySet="Produts">
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

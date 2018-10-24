@@ -1,0 +1,30 @@
+﻿@model Shop.Models.Produts
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateProduct</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("CreateProduct", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            @Html.LabelFor(m => m.ProductName, "Enter Your Product")
+            <br />
+            @Html.TextBoxFor(m => m.ProductName)
+            @Html.ValidationMessageFor(m => m.ProductName)
+            <br /><br />
+            <p><input type="submit" value="Отправить" /></p>
+        }
+    </div>
+</body>
+</html>

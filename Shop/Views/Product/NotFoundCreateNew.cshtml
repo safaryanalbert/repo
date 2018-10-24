@@ -1,0 +1,19 @@
+﻿@model Shop.Models.ProductWithAllDetails
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NotFoundCreateNew</title>
+</head>
+<body>
+    <div> 
+        <h1>There is not a Product Yow can create new </h1>
+        @Html.ActionLink("Create New","CreateNew",new { id=Model.ProductTypeId})
+    </div>
+</body>
+</html>

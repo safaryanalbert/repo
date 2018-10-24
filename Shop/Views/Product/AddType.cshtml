@@ -1,0 +1,31 @@
+﻿@model Shop.Models.ProductType
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddType</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AddType", "Product", new { id = Model.Product_Id }, FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <div>Enter Your ProductType</div>
+            <br />
+            @Html.TextBoxFor(m => m.ProductTypeName, new { @Value = "" })
+            @Html.ValidationMessageFor(model => model.ProductTypeName)
+            <br /><br />
+            <p><input type="submit" value="Отправить" /></p>
+        }
+    </div>
+</body>
+</html>

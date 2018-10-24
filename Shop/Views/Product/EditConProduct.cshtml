@@ -1,0 +1,70 @@
+﻿@model Shop.Models.ProductWithAllDetails
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditConProduct</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("EditConProduct", "Product", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+            @Html.LabelFor(m => m.Name, "Name")
+            <br />
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m=>m.Name)
+            <br /><br />
+            @Html.LabelFor(m => m.About, "About")
+            <br />
+            @Html.TextBoxFor(m => m.About)
+            <br /><br />
+            <h4>If you want to delete image please delete this path</h4>
+            @Html.TextBoxFor(m => m.Path)
+            <img src="@Model.Path" />
+            <br />
+            <input type="file" accept="image/png, image/jpeg, image/gif" name="image" />
+            <br />
+
+            if (Model.Prices != null && Model.Types != null)
+            {                         
+                for (int i = 0; i < Model.Prices.Count; i++)
+                {                   
+            <div>
+                <label>Prices</label>
+                <input type="text" formmethod="post" value="@Model.Prices[i]"  />
+                @Html.ValidationMessageFor(m => m.Prices)
+                <label>Types</label>
+                <input type="text" formmethod="post" value="@Model.Types[i]" />
+                @Html.ValidationMessageFor(m=>m.Types)
+                <button class="removebtn">-</button>
+                <br />
+            </div>
+                }            
+                <div id="container"></div>
+                <button type="button" id="somebutton" name="somebutton">+</button>
+            }
+            <br />
+            <input type="submit" value="Save" formmethod="post" />
+        }
+    </div>
+    <script>
+    $(document).ready(function () {
+            $("#somebutton").click(function () {
+                $("#container").append('<div><label>Prices</label><input type="text" formmethod="post" name="Prices" />@Html.ValidationMessageFor(m => m.Prices)<label>Types</label><input type="text" formmethod="post" name="Types"/>@Html.ValidationMessageFor(m => m.Types) <button type="button" class="removebtn">-</button><br /></div>');
+        });
+        $(document).on('click', '.removebtn', function () {
+                $(this).parent('div').remove();
+            });
+        });
+    </script>  
+</body>
+</html>

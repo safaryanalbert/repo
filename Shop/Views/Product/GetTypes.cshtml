@@ -1,0 +1,35 @@
+﻿@using Shop.Models
+@model List<ProductType>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetTypes</title>
+   @{
+       int productid=0;
+    }
+</head>
+<body>
+    <div>
+        @Html.ActionLink("Home Page", "HomePage")
+        <h3>Please select Your Type</h3>
+        @foreach (var item in Model)
+        {
+            <div style="font-style:italic;margin-top:6px">
+                @Html.ActionLink(item.ProductTypeName, "GetConcreateProduct", new { TypeId = item.ProductType_Id })
+                @Html.ActionLink("Edit", "EditTypeOfProduct", new { id = item.ProductType_Id }, new { @style = "margin-left:20px;" })
+                @Html.ActionLink($"DeleteType {@item.ProductTypeName}", "DeleteTypeofProduct", new { id = item.ProductType_Id }, new { @style = "margin-left:20px;" })
+                @{
+                    productid = item.Product_Id;
+                }
+            </div>
+        }
+        @Html.ActionLink($"Add a new Type", "AddType", new { id = productid })
+    </div>
+</body>
+</html>

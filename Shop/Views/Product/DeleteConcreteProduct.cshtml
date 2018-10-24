@@ -1,0 +1,27 @@
+﻿@model Shop.Models.ProductWithAllDetails
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteConcreteProduct</title>
+</head>
+<body>
+    <div>
+        <div>Do you want to delete @Model.Name ?</div>
+        @using (Html.BeginForm("DeleteConcreateProduct","Product", new { id = Model.Id}, FormMethod.Post))
+        {
+            <input type="submit" value="Yes" />
+        }
+        @using (Html.BeginForm("CancelDeletingConcreteProduct","Product", new {id=Model.ProductTypeId},FormMethod.Get))
+        {
+            <input type="submit" value="No" />
+        }
+    </div>
+</body>
+</html>

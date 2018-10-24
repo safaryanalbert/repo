@@ -1,0 +1,28 @@
+﻿@model Shop.Models.Produts
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteProduct</title>
+</head>
+<body>
+    <div>
+        <div><p style="color:red">Warning</p> If you delete @Model.ProductName many concrete @Model.ProductName will be deleted</div>
+        <div>Do you want to delete?</div>
+        @using (Html.BeginForm("DeletProduct", "Product", new { id = Model.Product_Id }, FormMethod.Post))
+        {
+            <input type="submit" value="Yes" />
+        }
+        @using (Html.BeginForm("Cancel", "Product",FormMethod.Get))
+        {
+            <input type="submit" value="No" />
+        }
+    </div>
+</body>
+</html>

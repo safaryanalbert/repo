@@ -1,0 +1,37 @@
+﻿@model Shop.Models.Produts
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Please enter new name</h2>
+        @using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Product_Id)
+            <div>
+                @Html.LabelFor(model => model.ProductName)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.ProductName)
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        }
+    </div>
+</body>
+</html>
