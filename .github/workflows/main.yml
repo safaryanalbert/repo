@@ -7,3 +7,4 @@
     build-configuration: # optional, default is Release
     # The path to the project or solution to build (defaults to the current directory).
     path: # optional, default is .
+   #test
