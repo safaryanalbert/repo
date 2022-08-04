@@ -1,0 +1,9 @@
+- name:BuildTests
+  uses:EasyDesk/action-dotnet-build@v1.0.0
+ with:
+    # Additional build arguments to pass to 'dotnet build'.
+    build-args: # optional
+    # The build configuration to use (defaults to 'Release').
+    build-configuration: # optional, default is Release
+    # The path to the project or solution to build (defaults to the current directory).
+    path: # optional, default is .
